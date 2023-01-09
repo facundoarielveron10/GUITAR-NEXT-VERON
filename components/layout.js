@@ -1,16 +1,19 @@
 import Head from 'next/head';
+import Header from './header';
+import Footer from './footer';
 
 export default function Layout({ children, title = '' }) {
-	return (
-		<>
-			<Head>
-				<title>{`GuitarLA - ${title}`}</title>
-			</Head>
-			<header>Header</header>
+    return (
+        <>
+            <Head>
+                <title>{`GuitarLA - ${title}`}</title>
+            </Head>
 
-			{children}
+            <Header />
 
-			<footer>Footer</footer>
-		</>
-	);
+            {children}
+
+            <Footer />
+        </>
+    );
 }
