@@ -1,25 +1,58 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import styles from '../styles/header.module.css';
 
 export default function Header() {
-    return (
-        <header className={styles.header}>
-            <div className={`contenedor ${styles.barra}`}>
-                <Image
-                    src="/img/logo.svg"
-                    width={300}
-                    height={40}
-                    alt="Logo GuitarLA"
-                />
+	const router = useRouter();
 
-                <nav className={styles.navegacion}>
-                    <Link href="/">Inicio</Link>
-                    <Link href="/nosotros">Nosotros</Link>
-                    <Link href="/blog">Blog</Link>
-                    <Link href="/tienda">Tienda</Link>
-                </nav>
-            </div>
-        </header>
-    );
+	return (
+		<header className={styles.header}>
+			<div className={`contenedor ${styles.barra}`}>
+				<Link href="/">
+					<Image
+						src="/img/logo.svg"
+						width={300}
+						height={40}
+						alt="Logo GuitarLA"
+					/>
+				</Link>
+
+				<nav className={styles.navegacion}>
+					<Link
+						className={`${
+							router.pathname === '/' ? styles.activo : ''
+						}`}
+						href="/"
+					>
+						Inicio
+					</Link>
+					<Link
+						className={`${
+							router.pathname === '/nosotros' ? styles.activo : ''
+						}`}
+						href="/nosotros"
+					>
+						Nosotros
+					</Link>
+					<Link
+						className={`${
+							router.pathname === '/blog' ? styles.activo : ''
+						}`}
+						href="/blog"
+					>
+						Blog
+					</Link>
+					<Link
+						className={`${
+							router.pathname === '/tienda' ? styles.activo : ''
+						}`}
+						href="/tienda"
+					>
+						Tienda
+					</Link>
+				</nav>
+			</div>
+		</header>
+	);
 }
